@@ -1,13 +1,6 @@
 package com.lciclcazz.webhook;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Arrays;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.google.common.base.Joiner;
 import com.lciclcazz.webhook.config.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +9,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
 
-import com.google.common.base.Joiner;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class);
+    public static Path downloadedContentDir;
 
     @Inject
     private Environment env;
@@ -45,7 +46,11 @@ public class Application {
         app.setShowBanner(false);
 
         SimpleCommandLinePropertySource source = new SimpleCommandLinePropertySource(args);
-
+        try {
+            downloadedContentDir = Files.createTempDirectory("line-bot");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // Check if the selected profile has been set as argument.
         // If not, the development profile will be used.
         addDefaultProfile(app, source);
