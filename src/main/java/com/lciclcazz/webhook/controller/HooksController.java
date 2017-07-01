@@ -77,6 +77,7 @@ public class HooksController {
                 message.put("timestamp",jsonNode.path(0).path("timestamp").asText());
                 message.put("author",jsonNode.path(0).path("author").path("name").asText()+
                         "<"+jsonNode.path(0).path("author").path("email").asText()+">" );
+                message.put("url",jsonNode.path(0).path("url").asText());
 
                 logger.info("Push Message {} \n{} \n{} \n{} "  ,message.get("commitId") ,message.get("message") ,message.get("timestamp") ,message.get("author"));
 
