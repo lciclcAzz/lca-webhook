@@ -8,6 +8,7 @@ import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.action.MessageAction;
 import com.linecorp.bot.model.action.PostbackAction;
 import com.linecorp.bot.model.action.URIAction;
+import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
@@ -113,6 +114,28 @@ public class LineBotService {
             logger.info("Sent messages: {}", apiResponse);
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
+        }
+    }
+    public void push(@NonNull String token, @NonNull Message message) {
+        push(token, Collections.singletonList(message));
+    }
+
+    public void push(@NonNull String token, @NonNull List<Message> messages) {
+        try {
+            PushMessage pushMessage = new PushMessage( Constants.LINE_UlciclcAzz, messages );
+//            Response<BotApiResponse> response = LineMessagingServiceBuilder
+//                    .create(token)
+//                    .build()
+//                    .pushMessage(pushMessage)
+//                    .execute();
+
+            BotApiResponse apiResponse;
+            apiResponse = lineMessagingClient.pushMessage(new PushMessage(Constants.LINE_UlciclcAzz,messages)).get();
+            logger.info("Sent messages: {}", apiResponse);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+        } catch (InterruptedException | ExecutionException e) {
+        throw new RuntimeException(e);
         }
     }
 }
