@@ -78,7 +78,7 @@ public class HooksController {
                 message.put("author",jsonNode.path(0).path("author").path("name").asText()+
                         "<"+jsonNode.path(0).path("author").path("email").asText()+">" );
                 message.put("url",jsonNode.path(0).path("url").asText());
-
+                message.put("status","PASS");
                 logger.info("Push Message {} \n{} \n{} \n{} "  ,message.get("commitId") ,message.get("message") ,message.get("timestamp") ,message.get("author"));
 
                 lineBotService.pushTextContentsButton(Constants.TOKEN,message);

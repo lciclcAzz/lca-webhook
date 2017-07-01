@@ -80,20 +80,19 @@ public class LineBotService {
     }
 
     public void pushTextContentsButton(@NonNull String token, @NonNull HashMap message) throws IOException {
-        String imageUrl = createUri("/static/buttons/1040.jpg");
+        String imageUrl = createUri("/static/buttons/1040.png");
         ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                 imageUrl,
-                "My button sample",
-                "Hello, my button",
+                "Push by : "+message.get("author"),
+                "commitId : "+message.get("commitId"),
                 Arrays.asList(
-                        new URIAction("Go to line.me",
-                                "https://line.me"),
+                        new URIAction("Go to Project",message.get("url").toString()),
                         new PostbackAction("Say hello1",
                                 "hello "),
                         new PostbackAction("hello2",
-                                "hello ",
+                                " TIME : "+message.get("timestamp"),
                                 "hello "),
-                        new MessageAction("Say message", "Rice=米")
+                        new MessageAction("Say message", "STATUS : "+message.get("status"))
                 ));
         TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
         this.reply(token, templateMessage);
