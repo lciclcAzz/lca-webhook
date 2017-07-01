@@ -96,7 +96,7 @@ public class LineBotService {
                         new MessageAction("Say message", "STATUS : "+message.get("status"))
                 ));
         TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
-        this.reply(token, templateMessage);
+        this.push(token, templateMessage);
 
     }
 
