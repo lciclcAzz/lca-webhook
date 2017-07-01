@@ -123,19 +123,20 @@ public class LineBotService {
     public void push(@NonNull String token, @NonNull List<Message> messages) {
         try {
             PushMessage pushMessage = new PushMessage( Constants.LINE_UlciclcAzz, messages );
-//            Response<BotApiResponse> response = LineMessagingServiceBuilder
-//                    .create(token)
-//                    .build()
-//                    .pushMessage(pushMessage)
-//                    .execute();
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(token)
+                    .build()
+                    .pushMessage(pushMessage)
+                    .execute();
+            logger.info("BotApiResponse : "+response.code() + " " + response.message());
 
-            BotApiResponse apiResponse;
-            apiResponse = lineMessagingClient.pushMessage(new PushMessage(Constants.LINE_UlciclcAzz,messages)).get();
-            logger.info("Sent messages: {}", apiResponse);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-        } catch (InterruptedException | ExecutionException e) {
-        throw new RuntimeException(e);
+//            BotApiResponse apiResponse;
+//            apiResponse = lineMessagingClient.pushMessage(new PushMessage(Constants.LINE_UlciclcAzz,messages)).get();
+//            logger.info("Sent messages: {}", apiResponse);
+        } catch (IOException e) {
+            e.printStackTrace();
+//        } catch (InterruptedException | ExecutionException e) {
+//        throw new RuntimeException(e);
         }
     }
 }
