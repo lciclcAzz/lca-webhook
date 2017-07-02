@@ -85,7 +85,7 @@ public class LineBotService {
         ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                 imageUrl,
                 "Push by : lciclcAzz",
-                "commitId : "+message.get("commitId"),
+                "commitId : commitid",
                 Arrays.asList(
                         new URIAction("Go to Project","lciclcAzz Project"),
                         new PostbackAction("Say hello1",
