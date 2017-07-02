@@ -28,6 +28,8 @@ public final class Constants {
 
 
     public static final String PROJECT          = "project";
+    public static final String PJ_ID            = "project";
+
     public static final String COMMITS          = "commits";
     public static final String CM_ID            = "id";
     public static final String CM_MSG           = "message";

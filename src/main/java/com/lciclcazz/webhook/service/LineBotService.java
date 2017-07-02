@@ -58,7 +58,7 @@ public class LineBotService {
     }
 
     public void pushTextContents(@NonNull String token, @NonNull HashMap message) throws IOException {
-        String imageUrl = createUri("/static/buttons/1040.jpg");
+        String imageUrl = "https://gitlab.com/uploads/system/project/avatar/2281010/PEO-octocat-2.svg.png";//createUri("/static/buttons/1040.jpg");
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                 Arrays.asList(
                         new CarouselColumn(imageUrl, "hoge", "fuga", Arrays.asList(

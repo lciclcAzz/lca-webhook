@@ -10,6 +10,7 @@
 <body>
 	<div th:fragment="footer">
 		<hr/>
+		<div> <img src="../../static/build/build.png"/> </div>
 		<div id="userinfo">
 		    <div sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 				<span th:text="#{label_welcome} + ', ' + ${#authentication.name}">Welcome, Bob</span> 
@@ -21,7 +22,6 @@
 				th:href="@{?lang=en}" th:text="#{label_en_CA}">English</a> | <a href="list.html"
 				th:href="@{?lang=fr}" th:text="#{label_fr_CA}">French</a>
 		</div>
-		
 		
 		<!-- JavaScript Files -->
 		<!-- jQuery -->
