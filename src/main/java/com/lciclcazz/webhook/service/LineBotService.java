@@ -87,7 +87,7 @@ public class LineBotService {
                 "Push by : lciclcAzz",
                 "commitId : commitid",
                 Arrays.asList(
-                        new URIAction("Go to Project","lciclcAzz Project"),
+                        new URIAction("Go to Project","https://lcawebhooks.herokuapp.com"),
                         new PostbackAction("Say hello1",
                                 "hello "),
                         new PostbackAction("hello2",
