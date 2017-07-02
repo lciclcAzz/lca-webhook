@@ -84,7 +84,7 @@ public class LineBotService {
     }
 
     public void pushTextContentsButton(@NonNull String token, @NonNull HashMap message,@NonNull String userId) throws IOException {
-        String imageUrl = createUri("/static/buttons/1040.png");
+        String imageUrl = createUri("/static/build/build.png");
         ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                 imageUrl,
                 "Project : "+message.get(Constants.PROJECT),    //max 40 characters.
