@@ -10,7 +10,7 @@
 <body>
 	<div th:fragment="footer">
 		<hr/>
-		<div> <img src="../../static/js/build.png"/> </div>
+		<div> <img src="/static/build/build.png"/> </div>
 		<div id="userinfo">
 		    <div sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 				<span th:text="#{label_welcome} + ', ' + ${#authentication.name}">Welcome, Bob</span> 
