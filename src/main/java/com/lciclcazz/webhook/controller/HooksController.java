@@ -61,7 +61,7 @@ public class HooksController {
             default : //PUSH Event
                 message = new HashMap();
                 jsonNode = Tools.getEvent(reqBody,Constants.PROJECT);
-                message.put(Constants.CM_ID         ,jsonNode.path(0).path(Constants.CM_ID).asText());
+                message.put(Constants.PROJECT         ,jsonNode.path(0).path(Constants.CM_NAME).asText());
 
                 jsonNode = Tools.getEvent(reqBody,Constants.COMMITS);
                 message.put(Constants.CM_ID         ,jsonNode.path(0).path(Constants.CM_ID).asText());
