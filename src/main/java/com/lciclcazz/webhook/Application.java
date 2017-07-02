@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 public class Application {
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
     public static Path downloadedContentDir;
 
     @Inject
@@ -32,9 +32,9 @@ public class Application {
     @PostConstruct
     public void initApplication() throws IOException {
         if (env.getActiveProfiles().length == 0) {
-            log.warn("No Spring profile configured, running with default configuration");
+            logger.warn("No Spring profile configured, running with default configuration");
         } else {
-            log.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
+            logger.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
         }
     }
                                                                                                                                                                          
@@ -56,7 +56,7 @@ public class Application {
         addDefaultProfile(app, source);
         addLiquibaseScanPackages();
         Environment env = app.run(args).getEnvironment();
-        log.info("Access URLs:\n----------------------------------------------------------\n\t" +
+        logger.info("Access URLs:\n----------------------------------------------------------\n\t" +
             "Local: \t\thttp://127.0.0.1:{}\n\t" +
             "External: \thttp://{}:{}\n----------------------------------------------------------",
             env.getProperty("server.port"),

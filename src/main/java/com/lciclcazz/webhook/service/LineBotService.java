@@ -8,7 +8,6 @@ import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.action.MessageAction;
 import com.linecorp.bot.model.action.PostbackAction;
 import com.linecorp.bot.model.action.URIAction;
-import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
@@ -81,22 +80,41 @@ public class LineBotService {
     }
 
     public void pushTextContentsButton(@NonNull String token, @NonNull HashMap message) throws IOException {
+        pushTextContentsButton(token,message, (Constants.DEFUALT_LINE_GROUP != null?Constants.DEFUALT_LINE_GROUP:Constants.LINE_UlciclcAzz) );
+    }
+
+    public void pushTextContentsButton(@NonNull String token, @NonNull HashMap message,@NonNull String userId) throws IOException {
         String imageUrl = createUri("/static/buttons/1040.png");
         ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                 imageUrl,
-                "Push by : lciclcAzz",
-                "commitId : commitid",
+                "Project : "+message.get(Constants.PROJECT),    //max 40 characters.
+                "Act. By : "+                                   //max (160:no image,60 within image) characters.
+                (
+                        ("Act. By : "+message.get(Constants.CM_AUTHOR)+"<"+message.get(Constants.CM_EMAIL)+">").length() < 60?
+                        message.get(Constants.CM_AUTHOR)+"<"+message.get(Constants.CM_EMAIL)+">"
+                        :"<"+message.get(Constants.CM_EMAIL)+">"
+                ),
+
                 Arrays.asList(
-                        new URIAction("Go to Project","https://lcawebhooks.herokuapp.com"),
-                        new PostbackAction("Say hello1",
-                                "hello "),
-                        new PostbackAction("hello2",
-                                " TIME : Timestamp",
-                                "hello "),
-                        new MessageAction("Say message", "STATUS : "+message.get("status"))
+                        //URI action.
+                        new URIAction(
+                                "Goto commit : "+message.get(Constants.CM_ID.substring(0,5))+"...",//max 40 characters.
+                                message.get(Constants.CM_URL)+""//max 1000 characters.
+                        ),
+                        //Postback action.
+                        new PostbackAction(
+                                "GOOD COMMIT",
+                                "good_commit"
+                        ),
+                        //Message action.
+                        new MessageAction(
+                                "BUILD STATUS",
+                                "status"
+                        )
+
                 ));
         TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
-        this.push(token, templateMessage);
+        this.push(token, templateMessage,userId);
 
     }
 
@@ -116,13 +134,18 @@ public class LineBotService {
             throw new RuntimeException(e);
         }
     }
+
     public void push(@NonNull String token, @NonNull Message message) {
-        push(token, Collections.singletonList(message));
+        push(token, Collections.singletonList(message),(Constants.DEFUALT_LINE_GROUP != null?Constants.DEFUALT_LINE_GROUP:Constants.LINE_UlciclcAzz) );
     }
 
-    public void push(@NonNull String token, @NonNull List<Message> messages) {
+    public void push(@NonNull String token, @NonNull Message message, @NonNull String userId) {
+        push(token, Collections.singletonList(message),userId);
+    }
+
+    public void push(@NonNull String token, @NonNull List<Message> messages, @NonNull String userId) {
         try {
-            PushMessage pushMessage = new PushMessage( Constants.LINE_UlciclcAzz, messages );
+            PushMessage pushMessage = new PushMessage(userId, messages );
             Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(token)
                     .build()
@@ -134,7 +157,7 @@ public class LineBotService {
 //            apiResponse = lineMessagingClient.pushMessage(new PushMessage(Constants.LINE_UlciclcAzz,messages)).get();
 //            logger.info("Sent messages: {}", apiResponse);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
 //        } catch (InterruptedException | ExecutionException e) {
 //        throw new RuntimeException(e);
         }
