@@ -84,14 +84,14 @@ public class LineBotService {
         String imageUrl = createUri("/static/buttons/1040.png");
         ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                 imageUrl,
-                "Push by : "+message.get("author"),
+                "Push by : lciclcAzz",
                 "commitId : "+message.get("commitId"),
                 Arrays.asList(
-                        new URIAction("Go to Project",message.get("url").toString()),
+                        new URIAction("Go to Project","lciclcAzz Project"),
                         new PostbackAction("Say hello1",
                                 "hello "),
                         new PostbackAction("hello2",
-                                " TIME : "+message.get("timestamp"),
+                                " TIME : Timestamp",
                                 "hello "),
                         new MessageAction("Say message", "STATUS : "+message.get("status"))
                 ));
