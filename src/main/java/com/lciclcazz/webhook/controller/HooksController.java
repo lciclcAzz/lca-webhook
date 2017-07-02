@@ -61,8 +61,8 @@ public class HooksController {
             default : //PUSH Event
                 message = new HashMap();
                 jsonNode = Tools.getEvent(reqBody);
-                message.put(Constants.PROJECT         ,jsonNode.path(Constants.PROJECT).path(Constants.CM_NAME).asText());
-                message.put(Constants.PJ_ID          ,jsonNode.path(Constants.PJ_ID).asText());
+                message.put(Constants.PROJECT       ,jsonNode.path(Constants.PROJECT).path(Constants.CM_NAME).asText());
+                message.put(Constants.PJ_ID         ,jsonNode.path(Constants.PJ_ID).asText());
                 jsonNode = Tools.getEvent(reqBody,Constants.COMMITS);
                 message.put(Constants.CM_ID         ,jsonNode.path(0).path(Constants.CM_ID).asText());
                 message.put(Constants.CM_MSG        ,jsonNode.path(0).path(Constants.CM_MSG).asText());
@@ -72,7 +72,9 @@ public class HooksController {
                 message.put(Constants.CM_URL        ,jsonNode.path(0).path(Constants.CM_URL).asText());
                 message.put(Constants.CM_STATUS,"PASS");
 
-                logger.info("<<<<< Push Message >>>>> {} \n{} \n{} \n{} "
+                logger.info("<<<<< Push Message >>>>>{} \n{} \n{} \n{} \n{} \n{} "
+                        ,message.get(Constants.PROJECT)
+                        ,message.get(Constants.PJ_ID)
                         ,message.get(Constants.CM_ID)
                         ,message.get(Constants.CM_MSG)
                         ,message.get(Constants.CM_TIMESTAMP)
