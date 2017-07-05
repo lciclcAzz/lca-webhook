@@ -48,7 +48,7 @@ public class HooksController {
 
                 break;
             case Constants._PIPELINE :
-                message = this.prepareMsg(reqBody);
+                message = this.prepareMsg(reqBody,Constants._PIPELINE);
                 if(!Constants.FAILED.equals(message.get(Constants.CM_STATUS)))
                     lineBotService.pushTextContentsButton(Constants.TOKEN,message);
 
