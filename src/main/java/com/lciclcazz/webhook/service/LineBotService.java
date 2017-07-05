@@ -98,7 +98,7 @@ public class LineBotService {
                 Arrays.asList(
                         //URI action.
                         new URIAction(
-                                "Commit : "+message.get(Constants.CM_ID).toString().substring(0,5)+"...",//max 40 characters.
+                                "Commit : "+(message.get(Constants.CM_ID).toString().length()>5?message.get(Constants.CM_ID).toString().substring(0,5):"")+"...",//max 40 characters.
                                 message.get(Constants.CM_URL)+""//max 1000 characters.
                         )
                         //Postback action.
