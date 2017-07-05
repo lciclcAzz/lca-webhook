@@ -29,6 +29,7 @@ public final class Constants {
 
     public static final String PROJECT          = "project";
     public static final String PJ_ID            = "project_id";
+    public static final String BUILDS            = "builds";
 
     public static final String COMMITS          = "commits";
     public static final String CM_ID            = "id";
@@ -39,13 +40,16 @@ public final class Constants {
     public static final String CM_EMAIL         = "email";
     public static final String CM_URL           = "url";
     public static final String CM_STATUS        = "status";
+    public static final String FAILED           = "fail";
+    public static final String PASS             = "success";
 
-    public static final String _PUSH      = "PUSH";
-    public static final String _TAG       = "TAG";
-    public static final String _ISSUE     = "ISSUE";
-    public static final String _WIKI      = "WIKI";
-    public static final String _PIPELINE  = "PIPELINE";
-    public static final String _BUILD     = "BUILD";
+    public static final String _PUSH      = "Push Hook"     ;
+    public static final String _TAG       = "Tag Push Hook" ;
+    public static final String _ISSUE     = "Issue Hook"    ;
+    public static final String _WIKI      = "Wiki Page Hook";
+    public static final String _PIPELINE  = "Pipeline Hook" ;
+    public static final String _BUILD     = "Build Hook"    ;
+    public static final String _NOTE      = "Note Hook"     ;
 
 
     public static HashMap<String,String> LINE_USER_ID = new HashMap<String,String>();
@@ -53,16 +57,6 @@ public final class Constants {
     static {
         LINE_USER_ID.put("lciclcAzz", "U286d471884e10b385774885526bdea35");
         LINE_USER_ID.put("xDreamsBox", "U6bf578ca3ebe7005bdd7e41d7725725e");
-
-        GITLAB_EVENT.put(_PUSH    ,"Push Hook");
-        GITLAB_EVENT.put(_TAG     ,"Tag Push Hook");
-        GITLAB_EVENT.put(_ISSUE   ,"Issue Hook");
-        GITLAB_EVENT.put(_WIKI    ,"Wiki Page Hook");
-        GITLAB_EVENT.put(_PIPELINE,"Pipeline Hook");
-        GITLAB_EVENT.put(_BUILD   ,"Pipeline Hook");
-
-        //commit Event
-        GITLAB_EVENT.put("NOTE","Note Hook");
 
     }
 

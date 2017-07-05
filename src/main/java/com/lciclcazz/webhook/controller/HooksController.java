@@ -35,55 +35,73 @@ public class HooksController {
 //    public void performTask(HttpServletRequest req, HttpServletResponse res,@RequestBody  PushHook reqBody) throws IOException {
     public void performTask(HttpServletRequest req, HttpServletResponse res,@RequestBody String reqBody) throws IOException {
         logger.info("<<<< "+Thread.currentThread().getStackTrace()[1].getMethodName()+" >>>>");
-        JsonNode jsonNode = null;
         HashMap message = null;
-        ObjectMapper objectMapper = new ObjectMapper();
 
         switch (Constants.GITLAB_HEADER){
-            case "TAG" :
+            case Constants._TAG :
 
                 break;
-            case "ISSUE" :
+            case Constants._ISSUE :
 
                 break;
-            case "WIKI" :
+            case Constants._WIKI :
 
                 break;
-            case "PIPELINE" :
+            case Constants._PIPELINE :
+                message = this.prepareMsg(reqBody);
+                if(!Constants.FAILED.equals(message.get(Constants.CM_STATUS)))
+                    lineBotService.pushTextContentsButton(Constants.TOKEN,message);
 
                 break;
-            case "BUILD" :
+            case Constants._BUILD :
 
                 break;
-            case "NOTE" : //commit,merge,
+            case Constants._NOTE : //commit,merge,
 
                 break;
             default : //PUSH Event
-                message = new HashMap();
-                jsonNode = Tools.getEvent(reqBody);
-                message.put(Constants.PROJECT       ,jsonNode.path(Constants.PROJECT).path(Constants.CM_NAME).asText());
-                message.put(Constants.PJ_ID         ,jsonNode.path(Constants.PJ_ID).asText());
-                jsonNode = Tools.getEvent(reqBody,Constants.COMMITS);
-                message.put(Constants.CM_ID         ,jsonNode.path(0).path(Constants.CM_ID).asText());
-                message.put(Constants.CM_MSG        ,jsonNode.path(0).path(Constants.CM_MSG).asText());
-                message.put(Constants.CM_TIMESTAMP  ,jsonNode.path(0).path(Constants.CM_TIMESTAMP).asText());
-                message.put(Constants.CM_AUTHOR     ,jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_NAME).asText());
-                message.put(Constants.CM_EMAIL      ,jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_EMAIL).asText());
-                message.put(Constants.CM_URL        ,jsonNode.path(0).path(Constants.CM_URL).asText());
-                message.put(Constants.CM_STATUS,"PASS");
-
-                logger.info("<<<<< Push Message >>>>>{} \n{} \n{} \n{} \n{} \n{} "
-                        ,message.get(Constants.PROJECT)
-                        ,message.get(Constants.PJ_ID)
-                        ,message.get(Constants.CM_ID)
-                        ,message.get(Constants.CM_MSG)
-                        ,message.get(Constants.CM_TIMESTAMP)
-                        ,message.get(Constants.CM_AUTHOR));
-
+                message = this.prepareMsg(reqBody);
                 lineBotService.pushTextContentsButton(Constants.TOKEN,message);
                 break;
 
         }
+    }
+
+    public HashMap prepareMsg(String reqBody){
+        return prepareMsg(reqBody,null);
+    }
+    public HashMap prepareMsg(String reqBody,String gitLabEvent){
+        HashMap message = new HashMap();
+        JsonNode jsonNode = null;
+        jsonNode = Tools.getEvent(reqBody);
+        message.put(Constants.PROJECT       ,jsonNode.path(Constants.PROJECT).path(Constants.CM_NAME).asText());
+        message.put(Constants.PJ_ID         ,jsonNode.path(Constants.PJ_ID).asText());
+        jsonNode = Tools.getEvent(reqBody,Constants.COMMITS);
+        message.put(Constants.CM_ID         ,jsonNode.path(0).path(Constants.CM_ID).asText());
+        message.put(Constants.CM_MSG        ,jsonNode.path(0).path(Constants.CM_MSG).asText());
+        message.put(Constants.CM_TIMESTAMP  ,jsonNode.path(0).path(Constants.CM_TIMESTAMP).asText());
+        message.put(Constants.CM_AUTHOR     ,jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_NAME).asText());
+        message.put(Constants.CM_EMAIL      ,jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_EMAIL).asText());
+        message.put(Constants.CM_URL        ,jsonNode.path(0).path(Constants.CM_URL).asText());
+
+        if(gitLabEvent!=null) {
+            jsonNode = Tools.getEvent(reqBody,Constants.BUILDS);
+            if(jsonNode.path(0).path(Constants.CM_STATUS).asText().startsWith("failed"))
+                message.put(Constants.CM_STATUS, Constants.FAILED);
+            else
+                message.put(Constants.CM_STATUS, Constants.PASS);
+            logger.info("<<<<< Push Message >>>>>{}",message.get(Constants.CM_STATUS));
+        }
+
+        logger.info("<<<<< Push Message >>>>>{} \n{} \n{} \n{} \n{} \n{} "
+                ,message.get(Constants.PROJECT)
+                ,message.get(Constants.PJ_ID)
+                ,message.get(Constants.CM_ID)
+                ,message.get(Constants.CM_MSG)
+                ,message.get(Constants.CM_TIMESTAMP)
+                ,message.get(Constants.CM_AUTHOR));
+
+        return message;
     }
 
 }
