@@ -85,8 +85,9 @@ public class LineBotService {
 
     public void pushTextContentsButton(@NonNull String token, @NonNull HashMap message,@NonNull String userId) throws IOException {
         String imageUrl = createUri("/static/build/build.png");
+        String imageFailedUrl = createUri("/static/build/build_failed.png");
         ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
-                (Constants.FAILED.equals(message.get(Constants.FAILED))?createUri("/static/build/build_failed.png"):imageUrl),
+                (Constants.FAILED.equals(message.get(Constants.FAILED))?imageFailedUrl:imageUrl),
                 "Project : "+message.get(Constants.PROJECT),    //max 40 characters.
                 "Act. By : "+                                   //max (160:no image,60 within image) characters.
                 (
@@ -109,7 +110,7 @@ public class LineBotService {
 //                        //Message action.
                         ,new MessageAction(
                                 ".xX(-_-)Xx.",
-                                ""
+                                "."
                         )
 
                 ));

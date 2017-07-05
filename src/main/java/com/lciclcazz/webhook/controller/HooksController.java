@@ -36,7 +36,7 @@ public class HooksController {
     public void performTask(HttpServletRequest req, HttpServletResponse res,@RequestBody String reqBody) throws IOException {
         logger.info("<<<< "+Thread.currentThread().getStackTrace()[1].getMethodName()+" >>>>");
         HashMap message = null;
-        logger.info("<<<<< CASE >>>>>{}",req.getHeader(Constants.GITLAB_HEADER));
+        logger.info("<<<<< switch >>>>>{}",req.getHeader(Constants.GITLAB_HEADER));
         switch (req.getHeader(Constants.GITLAB_HEADER)){
             case Constants._TAG :
 
@@ -48,6 +48,7 @@ public class HooksController {
 
                 break;
             case Constants._PIPELINE :
+                logger.info("<<<<< CASE >>>>>{}",Constants._PIPELINE);
                 message = this.prepareMsg(reqBody,Constants._PIPELINE);
                 if(Constants.FAILED.equals(message.get(Constants.CM_STATUS)))
                     lineBotService.pushTextContentsButton(Constants.TOKEN,message);
@@ -59,11 +60,13 @@ public class HooksController {
             case Constants._NOTE : //commit,merge,
 
                 break;
-            case Constants._PUSH : //commit,merge,
+            case Constants._PUSH :
+                logger.info("<<<<< CASE >>>>>{}",Constants._PUSH);
                 message = this.prepareMsg(reqBody);
                 lineBotService.pushTextContentsButton(Constants.TOKEN,message);
                 break;
             default :
+                logger.info("<<<<< CASE >>>>>{}","default");
                 break;
 
         }
