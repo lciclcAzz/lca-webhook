@@ -36,7 +36,7 @@ public class HooksController {
     public void performTask(HttpServletRequest req, HttpServletResponse res,@RequestBody String reqBody) throws IOException {
         logger.info("<<<< "+Thread.currentThread().getStackTrace()[1].getMethodName()+" >>>>");
         HashMap message = null;
-
+        logger.info("<<<<< CASE >>>>>{}",message.get(Constants.GITLAB_HEADER));
         switch (Constants.GITLAB_HEADER){
             case Constants._TAG :
 
@@ -49,7 +49,7 @@ public class HooksController {
                 break;
             case Constants._PIPELINE :
                 message = this.prepareMsg(reqBody,Constants._PIPELINE);
-                if(!Constants.FAILED.equals(message.get(Constants.CM_STATUS)))
+                if(Constants.FAILED.equals(message.get(Constants.CM_STATUS)))
                     lineBotService.pushTextContentsButton(Constants.TOKEN,message);
 
                 break;
@@ -86,7 +86,7 @@ public class HooksController {
 
         if(gitLabEvent!=null) {
             jsonNode = Tools.getEvent(reqBody,Constants.BUILDS);
-            if(jsonNode.path(0).path(Constants.CM_STATUS).asText().startsWith("failed"))
+            if(Constants.FAILED.equals(jsonNode.path(0).path(Constants.CM_STATUS).asText()))
                 message.put(Constants.CM_STATUS, Constants.FAILED);
             else
                 message.put(Constants.CM_STATUS, Constants.PASS);
