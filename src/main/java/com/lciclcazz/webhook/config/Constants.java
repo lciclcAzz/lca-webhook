@@ -40,7 +40,7 @@ public final class Constants {
     public static final String CM_EMAIL         = "email";
     public static final String CM_URL           = "url";
     public static final String CM_STATUS        = "status";
-    public static final String FAILED           = "fail";
+    public static final String FAILED           = "failed";
     public static final String PASS             = "success";
 
     public static final String _PUSH      = "Push Hook"     ;
