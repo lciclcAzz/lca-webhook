@@ -49,7 +49,7 @@ public class HooksController {
                 break;
             case Constants._PIPELINE :
                 logger.info("<<<<< CASE >>>>>{}",Constants._PIPELINE);
-                message = this.prepareMsg(reqBody,Constants._PIPELINE);
+                message = this.prepareMsg(reqBody,false);
                 if(Constants.FAILED.equals(message.get(Constants.CM_STATUS)))
                     lineBotService.pushTextContentsButton(Constants.TOKEN,message);
 
@@ -73,15 +73,15 @@ public class HooksController {
     }
 
     public HashMap prepareMsg(String reqBody){
-        return prepareMsg(reqBody,null);
+        return prepareMsg(reqBody,true);
     }
-    public HashMap prepareMsg(String reqBody,String gitLabEvent){
+    public HashMap prepareMsg(String reqBody,boolean isDefalut){
         HashMap message = new HashMap();
         JsonNode jsonNode = null;
         jsonNode = Tools.getEvent(reqBody);
         message.put(Constants.PROJECT       ,jsonNode.path(Constants.PROJECT).path(Constants.CM_NAME).asText());
-        message.put(Constants.PJ_ID         ,jsonNode.path(Constants.PJ_ID).asText());
-        jsonNode = Tools.getEvent(reqBody,Constants.COMMITS);
+        if(!isDefalut)  message.put(Constants.PJ_ID         ,jsonNode.path(Constants.PJ_ID).asText());
+        jsonNode = Tools.getEvent(reqBody,Constants.COMMITS.substring(0,6));
         message.put(Constants.CM_ID         ,jsonNode.path(0).path(Constants.CM_ID).asText());
         message.put(Constants.CM_MSG        ,jsonNode.path(0).path(Constants.CM_MSG).asText());
         message.put(Constants.CM_TIMESTAMP  ,jsonNode.path(0).path(Constants.CM_TIMESTAMP).asText());
@@ -89,7 +89,7 @@ public class HooksController {
         message.put(Constants.CM_EMAIL      ,jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_EMAIL).asText());
         message.put(Constants.CM_URL        ,jsonNode.path(0).path(Constants.CM_URL).asText());
 
-        if(gitLabEvent!=null) {
+        if(!isDefalut) {
             jsonNode = Tools.getEvent(reqBody,Constants.BUILDS);
             if(Constants.FAILED.equals(jsonNode.path(0).path(Constants.CM_STATUS).asText()))
                 message.put(Constants.CM_STATUS, Constants.FAILED);
