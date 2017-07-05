@@ -107,10 +107,10 @@ public class LineBotService {
 //                                "good_commit"
 //                        )
 //                        //Message action.
-//                        ,new MessageAction(
-//                                "BUILD STATUS",
-//                                "status"
-//                        )
+                        ,new MessageAction(
+                                ".xX(-_-)Xx.",
+                                ""
+                        )
 
                 ));
         TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
