@@ -37,7 +37,7 @@ public class HooksController {
         logger.info("<<<< "+Thread.currentThread().getStackTrace()[1].getMethodName()+" >>>>");
         HashMap message = null;
         logger.info("<<<<< CASE >>>>>{}",Constants.GITLAB_HEADER);
-        switch (Constants.GITLAB_HEADER){
+        switch (req.getHeader(Constants.GITLAB_HEADER)){
             case Constants._TAG :
 
                 break;
