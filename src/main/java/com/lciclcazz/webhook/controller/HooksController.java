@@ -82,13 +82,13 @@ public class HooksController {
         jsonNode = Tools.getEvent(reqBody);
         message.put(Constants.PROJECT       ,jsonNode.path(Constants.PROJECT).path(Constants.CM_NAME).asText());
         if(!isDefalut) message.put(Constants.PJ_ID         ,jsonNode.path(Constants.PJ_ID).asText());
-        jsonNode = Tools.getEvent(reqBody,Constants.COMMITS);
-        message.put(Constants.CM_ID         ,!isDefalut?jsonNode.path(Constants.CM_ID).asText():jsonNode.path(0).path(Constants.CM_ID).asText());
-        message.put(Constants.CM_MSG        ,!isDefalut?jsonNode.path(Constants.CM_MSG).asText():jsonNode.path(0).path(Constants.CM_MSG).asText());
-        message.put(Constants.CM_TIMESTAMP  ,!isDefalut?jsonNode.path(Constants.CM_TIMESTAMP).asText():jsonNode.path(0).path(Constants.CM_TIMESTAMP).asText());
-        message.put(Constants.CM_AUTHOR     ,!isDefalut?jsonNode.path(Constants.CM_AUTHOR).asText():jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_NAME).asText());
-        message.put(Constants.CM_EMAIL      ,!isDefalut?jsonNode.path(Constants.CM_AUTHOR).asText():jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_EMAIL).asText());
-        message.put(Constants.CM_URL        ,!isDefalut?jsonNode.path(Constants.CM_URL).asText():jsonNode.path(0).path(Constants.CM_URL).asText());
+        jsonNode = Tools.getEvent(reqBody,!isDefalut?"commit":Constants.COMMITS);
+        message.put(Constants.CM_ID         ,!isDefalut?jsonNode.path(Constants.CM_ID).asText()         :jsonNode.path(0).path(Constants.CM_ID).asText());
+        message.put(Constants.CM_MSG        ,!isDefalut?jsonNode.path(Constants.CM_MSG).asText()        :jsonNode.path(0).path(Constants.CM_MSG).asText());
+        message.put(Constants.CM_TIMESTAMP  ,!isDefalut?jsonNode.path(Constants.CM_TIMESTAMP).asText()  :jsonNode.path(0).path(Constants.CM_TIMESTAMP).asText());
+        message.put(Constants.CM_AUTHOR     ,!isDefalut?jsonNode.path(Constants.CM_AUTHOR).asText()     :jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_NAME).asText());
+        message.put(Constants.CM_EMAIL      ,!isDefalut?jsonNode.path(Constants.CM_AUTHOR).asText()     :jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_EMAIL).asText());
+        message.put(Constants.CM_URL        ,!isDefalut?jsonNode.path(Constants.CM_URL).asText()        :jsonNode.path(0).path(Constants.CM_URL).asText());
 
         if(!isDefalut) {
             jsonNode = Tools.getEvent(reqBody,Constants.BUILDS);
