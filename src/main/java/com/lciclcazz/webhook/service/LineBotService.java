@@ -98,19 +98,19 @@ public class LineBotService {
                 Arrays.asList(
                         //URI action.
                         new URIAction(
-                                "Goto Commit:"+message.get(Constants.CM_ID).toString().substring(0,5)+"...",//max 40 characters.
+                                "Commit : "+message.get(Constants.CM_ID).toString().substring(0,5)+"...",//max 40 characters.
                                 message.get(Constants.CM_URL)+""//max 1000 characters.
-                        ),
-                        //Postback action.
-                        new PostbackAction(
-                                "GOOD COMMIT",
-                                "good_commit"
-                        ),
-                        //Message action.
-                        new MessageAction(
-                                "BUILD STATUS",
-                                "status"
                         )
+                        //Postback action.
+//                        ,new PostbackAction(
+//                                "GOOD COMMIT",
+//                                "good_commit"
+//                        )
+//                        //Message action.
+//                        ,new MessageAction(
+//                                "BUILD STATUS",
+//                                "status"
+//                        )
 
                 ));
         TemplateMessage templateMessage = new TemplateMessage("Button alt text", buttonsTemplate);
