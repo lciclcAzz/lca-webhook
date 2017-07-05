@@ -92,7 +92,6 @@ public class HooksController {
                 message.put(Constants.CM_STATUS, Constants.FAILED);
             else
                 message.put(Constants.CM_STATUS, Constants.PASS);
-            logger.info("<<<<< STATUS >>>>>{}",message.get(Constants.CM_STATUS));
         }
 
         logger.info("<<<<< Push Message >>>>>{} \n{} \n{} \n{} \n{} \n{} "
