@@ -36,7 +36,7 @@ public class HooksController {
     public void performTask(HttpServletRequest req, HttpServletResponse res,@RequestBody String reqBody) throws IOException {
         logger.info("<<<< "+Thread.currentThread().getStackTrace()[1].getMethodName()+" >>>>");
         HashMap message = null;
-        logger.info("<<<<< CASE >>>>>{}",Constants.GITLAB_HEADER);
+        logger.info("<<<<< CASE >>>>>{}",req.getHeader(Constants.GITLAB_HEADER));
         switch (req.getHeader(Constants.GITLAB_HEADER)){
             case Constants._TAG :
 
