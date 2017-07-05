@@ -86,8 +86,8 @@ public class HooksController {
         message.put(Constants.CM_ID         ,!isDefalut?jsonNode.path(Constants.CM_ID).asText()         :jsonNode.path(0).path(Constants.CM_ID).asText());
         message.put(Constants.CM_MSG        ,!isDefalut?jsonNode.path(Constants.CM_MSG).asText()        :jsonNode.path(0).path(Constants.CM_MSG).asText());
         message.put(Constants.CM_TIMESTAMP  ,!isDefalut?jsonNode.path(Constants.CM_TIMESTAMP).asText()  :jsonNode.path(0).path(Constants.CM_TIMESTAMP).asText());
-        message.put(Constants.CM_AUTHOR     ,!isDefalut?jsonNode.path(Constants.CM_AUTHOR).asText()     :jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_NAME).asText());
-        message.put(Constants.CM_EMAIL      ,!isDefalut?jsonNode.path(Constants.CM_AUTHOR).asText()     :jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_EMAIL).asText());
+        message.put(Constants.CM_AUTHOR     ,!isDefalut?jsonNode.path(Constants.CM_AUTHOR).path(Constants.CM_NAME).asText()     :jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_NAME).asText());
+        message.put(Constants.CM_EMAIL      ,!isDefalut?jsonNode.path(Constants.CM_AUTHOR).path(Constants.CM_EMAIL).asText()     :jsonNode.path(0).path(Constants.CM_AUTHOR).path(Constants.CM_EMAIL).asText());
         message.put(Constants.CM_URL        ,!isDefalut?jsonNode.path(Constants.CM_URL).asText()        :jsonNode.path(0).path(Constants.CM_URL).asText());
 
         if(!isDefalut) {

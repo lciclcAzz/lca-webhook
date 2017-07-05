@@ -87,7 +87,7 @@ public class LineBotService {
         String imageUrl = createUri("/static/build/build.png");
         String imageFailedUrl = createUri("/static/build/build_failed.png");
         ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
-                (Constants.FAILED.equals(message.get(Constants.FAILED))?imageFailedUrl:imageUrl),
+                (Constants.FAILED.equals(message.get(Constants.CM_STATUS))?imageFailedUrl:imageUrl),
                 "Project : "+message.get(Constants.PROJECT),    //max 40 characters.
                 "Act. By : "+                                   //max (160:no image,60 within image) characters.
                 (
