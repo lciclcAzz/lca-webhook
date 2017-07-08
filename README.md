@@ -207,6 +207,6 @@ A big thank you to [Julien Dubois](http://www.julien-dubois.com/) and the [JHips
 
 Also, thank you to Rafal Borowiec's for his impressive [spring-mvc-quickstart-archetype](https://github.com/kolorobot/spring-mvc-quickstart-archetype) project.
 
-### Author ###
+### Credit ###
 [Chris Bailey](http://www.chrisbaileydeveloper.com)
 
