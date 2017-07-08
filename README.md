@@ -1,8 +1,7 @@
 # lca-webhook [lciclcAzz]
-[![CircleCI](https://img.shields.io/circleci/project/github/auth0/java-jwt.svg?style=flat-square)](https://circleci.com/gh/auth0/java-jwt/tree/master)
-[![Coverage Status](https://img.shields.io/codecov/c/github/auth0/lca-webhook/v3.svg?style=flat-square)](https://codecov.io/github/auth0/lca-webhook)
+[![Build Status](https://travis-ci.org/lciclcAzz/lca-webhook.svg?branch=master)](https://travis-ci.org/lciclcAzz/lca-webhook)
+
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://doge.mit-license.org)
-[![Build Status][travis-image]][travis-url] [![codecov.io](https://codecov.io/github/cainus/codecov.io/coverage.svg?branch=master)](https://codecov.io/github/cainus/codecov.io?branch=master)
 
 ## Spring Boot + Thymeleaf + Heroku Template#
 This template has been designed to be used in conjunction with [JHipster](https://jhipster.github.io/) **version 2.6.0** to enable rapid development of Spring Boot + Thymeleaf applications that are fully deployable to Heroku.  The template's features have been fully documented in the [Spring Boot + Thymeleaf + Heroku Template](http://chrisbaileydeveloper.com/projects/spring-boot-thymeleaf-heroku-template/) web page on my website.
