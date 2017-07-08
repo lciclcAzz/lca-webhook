@@ -1,6 +1,6 @@
 # lca-webhook [lciclcAzz]
 [![Build Status](https://travis-ci.org/lciclcAzz/lca-webhook.svg?branch=master)](https://travis-ci.org/lciclcAzz/lca-webhook)
-[![Coverage Status](https://img.shields.io/codecov/lciclcAzz/lca-webhook/v3.svg?style=flat-square)](https://codecov.io/gh/lciclcAzz/lca-webhook)
+[![Build Status][travis-image]][travis-url] [![codecov.io](https://codecov.io/github/lciclcAzz/lca-webhook/coverage.svg?branch=master)](https://codecov.io/github/lciclcAzz/lca-webhook/?branch=master)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://doge.mit-license.org)
 
 ## Spring Boot + Thymeleaf + Heroku Template#
