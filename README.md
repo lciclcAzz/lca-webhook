@@ -1,8 +1,12 @@
+# lca-webhook [lciclcAzz]
+[![CircleCI](https://img.shields.io/circleci/project/github/auth0/java-jwt.svg?style=flat-square)](https://circleci.com/gh/auth0/java-jwt/tree/master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/auth0/java-jwt/v3.svg?style=flat-square)](https://codecov.io/github/auth0/java-jwt)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://doge.mit-license.org)
 
-#Spring Boot + Thymeleaf + Heroku Template#
+# Spring Boot + Thymeleaf + Heroku Template#
 This template has been designed to be used in conjunction with [JHipster](https://jhipster.github.io/) **version 2.6.0** to enable rapid development of Spring Boot + Thymeleaf applications that are fully deployable to Heroku.  The template's features have been fully documented in the [Spring Boot + Thymeleaf + Heroku Template](http://chrisbaileydeveloper.com/projects/spring-boot-thymeleaf-heroku-template/) web page on my website.
 
-###Technology Stack###
+### Technology Stack###
 - Spring Boot, no-xml Spring MVC 4 web application for Servlet 3.0 environment
 - Thymeleaf templates with added Joda Time & Spring Security Dialects  
 - Heroku fully cloud deployable
@@ -11,13 +15,13 @@ This template has been designed to be used in conjunction with [JHipster](https:
 - Testing (JUnit/Mockito/MockMVC/AssertJ/Hamcrest)  
 - Java 8, Spring Security 3.2, Maven 3, SLF4J, Logback, Bootstrap 3.3.4, jQuery 1.11.2, i18n, etc
 
-###Live Demo###
+### Live Demo###
 Be aware that this application is currently running on a free Heroku account.  If it hasn't been accessed in 30 minutes, then ***the first request will take up to 120 seconds***.  Note that the demo application might fail to load altogether if the Heroku servers are busy. 
 
 Here is the [Spring Boot + Thymeleaf + Heroku Template](https://spring-boot-thymeleaf-heroku.herokuapp.com/) running on Heroku.
 
 
-###Suggested Usage###
+### Suggested Usage###
 Utilize [JHipster](https://jhipster.github.io/) **version 2.6.0** to rapidly generate entities and Liquibase database changelogs that can then be transferred into this template.  
 
 Entity classes can be transferred from JHipster's `domain` package.  Liquibase changelogs can be transferred from JHipster's `src/main/resources/config/liquibase` folder.  
@@ -27,7 +31,7 @@ This template has been kept as <i>lean</i> as possible so that it can deploy suc
 If interested in production-ready features, check out the [Spring Boot Actuator](http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready) which will add many useful tools with very little effort.  Also, you can look at JHipster which is utilizing the [Metrics project](https://dropwizard.github.io/metrics/3.1.0/) as well as [Swagger](http://swagger.io/).
 
 
-###JHipster Setup###
+### JHipster Setup###
 This template relies on [JHipster](https://jhipster.github.io/) **version 2.6.0**.  In order to install version 2.6.0 please run the following command at the command prompt during your JHipster installation: 
 
 ```
@@ -74,7 +78,7 @@ Navigate to [http://localhost:8080](http://localhost:8080).
  
 The application can also be deployed by running the `Application.java` class.
 
-###Deploying to Heroku###
+### Deploying to Heroku###
 <i>The following steps require that the [Heroku Toolbelt](https://toolbelt.heroku.com/) has been installed locally and that a Heroku account has been created.</i>
 
 Navigate to the project directory on the command line.
